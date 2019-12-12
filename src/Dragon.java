@@ -1,4 +1,4 @@
-public class Dragon
+public class Dragon implements attackInterface
 {
     //instance var
     int uses;
@@ -60,4 +60,10 @@ public class Dragon
         uses--;
         return 0;
     }//end method to determine force of attack/decrease num uses
+
+    //toString
+    public String toString()
+    {
+        return "Name: "+name+"\nLevel: "+level+"\nUses: "+uses;
+    }//end toString
 }//end Dragon class

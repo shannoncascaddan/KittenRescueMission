@@ -1,4 +1,4 @@
-public class Human
+public class Human implements attackInterface
 {
     //instance var
     int level;
@@ -60,5 +60,19 @@ public class Human
     }//end method to set if the human must be fought
 
     //brain methods
+    public int attack()
+    {
+        int force = level +1;
+        return force;
+    }//end method to determine force of human's attack
+    public String giveClue()
+    {
+        return ("Your clue: "+clue);
+    }//end method to give the cat a clue
 
+    //toString
+    public String toString()
+    {
+        return "Level: "+level+"\nMust Fight?: "+mustFight+"\nHas Clue?: "+hasClue+"\nClue: "+clue;
+    }//end toString
 }//end human class

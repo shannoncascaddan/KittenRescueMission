@@ -1,4 +1,4 @@
-public class Cat
+public class Cat implements attackInterface
 {
     //instance variables
     private int lives;
@@ -58,4 +58,10 @@ public class Cat
         int force = level+1;
         return force;
     }//end method to calculate force of meow
+
+    //toString
+    public String toString()
+    {
+        return "Name: "+name+"\nLevel: "+level+"\nLives: "+lives;
+    }//end toString
 }//end Cat class
