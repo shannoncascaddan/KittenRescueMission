@@ -51,6 +51,7 @@ public class Dragon implements attackInterface
     public int attack()
     {
         int force;
+
         if (uses>0)
         {
             force = 100000;
@@ -60,7 +61,6 @@ public class Dragon implements attackInterface
         uses--;
         return 0;
     }//end method to determine force of attack/decrease num uses
-
     //toString
     public String toString()
     {

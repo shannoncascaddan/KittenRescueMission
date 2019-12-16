@@ -55,7 +55,7 @@ public class Cat implements attackInterface
     }//end method to calculate force of attack
     public int meow()
     {
-        int force = level+1;
+        int force = level;
         return force;
     }//end method to calculate force of meow
 

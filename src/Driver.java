@@ -54,42 +54,72 @@ public class Driver
                                 "raise it as your own. You name it "+dragon.getName()+". When it gets old enough, you take the dragon out with you to " +
                                 "\nfind your kittens.");
                         System.out.println("\nYou venture back out into the forest and encounter a human");
-                        Human human1 = new Human(rand.nextInt(cat.attack()+1),true, true,"You find a map to a town with kittens marked as the destination");
-                        humanEncounter(human1,cat,dragon,answer,keyboard);
+                        Human human1 = new Human(rand.nextInt(cat.attack()+1),true, true,"\nYou find a map to a town with kittens marked as the destination");
+                        human1.humanEncounter(human1,cat,dragon,answer,keyboard);
                         System.out.println("You follow the map in the hopes that the kittens it is referring to are yours.\nUpon entering the town, you find " +
                                 "a gaggle of humans that spot you. They approach. \nFortunately these are cat lovers and with to help you." +
-                                "they have another clue, which they give  to you freely.");
+                                " They have another clue, which they give  to you freely.");
                         human1.setMustFight(false);
                         human1.setClue("Down the street to the left there is a suspicious building. There kittens have been found before.\n" +
                                 "It is probably your best bet. Good luck, "+cat.getName()+"!");
-                        humanEncounter(human1,cat,dragon,answer,keyboard);
+                        human1.humanEncounter(human1,cat,dragon,answer,keyboard);
                         System.out.println("You follow their instructions and hope that your kittens will be found there.");
                         System.out.println("\nYou and "+dragon.getName()+" enter the building and you notice that you are surrounded by menacing looking humans.\n" +
                                 "You and your dragon must battle them all!");
 
+                        // final battles
                         Human human2 = new Human(rand.nextInt(cat.attack()+1),true,false,"");
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
 
                         human2.setLevel(rand.nextInt(cat.attack()+1));
-                        humanEncounter(human2,cat,dragon,answer,keyboard);
+                        human2.humanEncounter(human2,cat,dragon,answer,keyboard);
+
+                        System.out.println("Congratulations!You have won the battles!\nYou enter a room with the boss human. " +
+                                "This human admires your efforts at reaching him and grants you a key. " +
+                                "\nYou use this key to open a door, behind which you find your family.\n" +
+                                "You introduce your kittens to the new pet dragon and all fly home upon his back to live your lives as a happy family.");
+                        System.out.println("\nWould you like to play again?('yes'or 'no')");
+                        answer = keyboard.next();
+                        if(answer.equalsIgnoreCase("yes"))
+                        {
+                            beginStory(valid,cat,keyboard,dragon,rand);
+                        }//end if to restart4
+                        else
+                        {
+                            return;
+                        }//end else to quit
+
+                        if(cat.getLives()<=0)
+                        {
+                            System.out.println("Sorry you lost the game... Would you like to restart?('yes' or 'no'");
+                            answer = keyboard.next();
+                            if(answer.equalsIgnoreCase("yes"))
+                            {
+                                beginStory(valid,cat,keyboard,dragon,rand);
+                            }//end if to restart4
+                            else
+                            {
+                                return;
+                            }//end else to quit
+                        }//end if cat is still alive
                     }//end if to get dragon egg
                     else if(answer.equalsIgnoreCase("no"))
                     {
@@ -152,88 +182,6 @@ public class Driver
             }//end else for invalid input
         }//end while loop to validate answer
     }//end first part of story
-    public static void humanEncounter(Human human,Cat cat, Dragon dragon,String answer, Scanner keyboard)
-    {
-        boolean valid = false;
-        if (human.getMustFight())
-        {
-            System.out.print("\nThis human is threatening and must be fought. Who fights them?(Me or Dragon)\nYour level: "+cat.getLevel()+
-                    "\nDragon Uses Left: "+dragon.getUses());
-            while (!valid)
-            {
-                answer = keyboard.next();
-                if(answer.equalsIgnoreCase("me"))
-                {
-                    System.out.println("Do you want to 'meow' at them or 'attack'?" );
-                    while (!valid)
-                    {
-                        answer = keyboard.next();
-                        if(answer.equalsIgnoreCase("meow"))
-                        {
 
-                            if(cat.meow() >= human.attack())
-                            {
-                                System.out.println("You win the battle!");
-                                human.setLevel(human.getLevel()+1);
-                                if(human.getHasClue())
-                                {
-                                    System.out.println("You found a clue.\nClue: "+human.getClue());
-                                    System.out.println("\nYou are smart and follow the clue.");
-                                }//end if hasClue
-                            }//end if cat wins
-                            else
-                            {
-                                cat.setLives(cat.getLives()-1);
-                                System.out.println("You lost the battle. You loose a life.\nYour lives: "+cat.getLives());
-                            }//end if cat loses
-                            valid = true;
-                        }//end if meow
-                        else if (answer.equalsIgnoreCase("attack"))
-                        {
-                            if(cat.attack() >= human.attack())
-                            {
-                                System.out.println("You win the battle!");
-                                human.setLevel(human.getLevel()+1);
-                                if(human.getHasClue())
-                                {
-                                    System.out.println("You found a clue.\nClue: "+human.getClue());
-                                    System.out.println("\nYou are smart and follow the clue.");
-                                }//end if hasClue
-                            }//end if cat wins
-                            else
-                            {
-                                cat.setLives(cat.getLives()-1);
-                                System.out.println("You lost the battle. You loose a life.\nYour lives: "+cat.getLives());
-                            }//end if cat loses
-                        }//end if you choose to attack
-                        else
-                        {
-                            System.out.print("Please enter a valid input: ");
-                        }//end not valid else
-                    }//end validation while loop
-                }//end if for if you fight
-                else if(answer.equalsIgnoreCase("dragon"))
-                {
-                    valid = true;
-                    System.out.println("Your dragon wins the battle!");
-                    dragon.setUses(dragon.getUses() - 1);
-                    if(human.getHasClue())
-                    {
-                        System.out.println("You found a clue.\nClue: "+human.getClue());
-                        System.out.println("\nYou are smart and follow the clue.");
-                    }//end if hasClue
-                }//end if the dragon fights
-                else
-                {
-                    System.out.print("Please enter a valid input: ");
-                }//end not valid else
-            }//end validation loop
-        }//end process that occours if you have to fight the human
-        else if(human.getHasClue())
-        {
-            System.out.println("This human is kind and gives you a clue.\nClue: "+human.getClue());
-            System.out.println("\nYou are smart and follow the clue.");
-        }//end if has clue but not fight
-    }//end method to determine course of an encounter with a human
 }//end driver class
 
